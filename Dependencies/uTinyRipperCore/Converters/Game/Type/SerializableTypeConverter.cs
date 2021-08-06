@@ -32,7 +32,7 @@ namespace uTinyRipper.Converters
 
 		private static void GenerateNode(TypeTreeContext context, SerializableType origin, string name)
 		{
-#warning TODO: QuaternionCurve, Vector3Curve, PPtrCurve
+//#warning TODO: QuaternionCurve, Vector3Curve, PPtrCurve
 			if (origin.IsPrimitive())
 			{
 				context.AddPrimitive(origin.Name, name);

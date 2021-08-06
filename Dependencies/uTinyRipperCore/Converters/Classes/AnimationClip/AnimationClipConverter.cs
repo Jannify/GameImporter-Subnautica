@@ -374,15 +374,13 @@ namespace uTinyRipper.Converters
 
 		private void AddScriptCurve(GenericBinding binding, string path, float time, float value)
 		{
-#warning TODO:
-			FloatCurve curve = new FloatCurve(path, ScriptPropertyPrefix + binding.Attribute, ClassIDType.MonoBehaviour, binding.Script.CastTo<MonoScript>());
+            FloatCurve curve = new FloatCurve(path, ScriptPropertyPrefix + binding.Attribute, ClassIDType.MonoBehaviour, binding.Script.CastTo<MonoScript>());
 			AddFloatKeyframe(curve, time, value);
 		}
 
 		private void AddEngineCurve(GenericBinding binding, string path, float time, float value)
 		{
-#warning TODO:
-			FloatCurve curve = new FloatCurve(path, TypeTreePropertyPrefix + binding.Attribute, binding.ClassID, default);
+            FloatCurve curve = new FloatCurve(path, TypeTreePropertyPrefix + binding.Attribute, binding.ClassID, default);
 			AddFloatKeyframe(curve, time, value);
 		}
 

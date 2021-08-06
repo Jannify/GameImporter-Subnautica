@@ -14,7 +14,7 @@ namespace uTinyRipper.Classes.Misc
 			Data = Array.Empty<byte>();
 		}
 
-#warning TODO: Pack method
+//#warning TODO: Pack method
 
 		public float[] Unpack()
 		{

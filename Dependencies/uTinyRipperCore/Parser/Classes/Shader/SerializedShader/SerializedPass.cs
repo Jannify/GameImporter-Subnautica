@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace uTinyRipper.Classes.Shaders
@@ -86,7 +86,7 @@ namespace uTinyRipper.Classes.Shaders
 						ProgDomain.Export(writer, ShaderType.RayTracing);
 					}
 
-#warning HasInstancingVariant?
+//#warning HasInstancingVariant?
 				}
 				else
 				{

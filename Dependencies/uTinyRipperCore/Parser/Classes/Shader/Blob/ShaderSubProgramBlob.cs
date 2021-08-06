@@ -107,8 +107,7 @@ namespace uTinyRipper.Classes.Shaders
 				decompressedLength = (uint)blobMem.Length;
 
 				blobMem.Position = 0;
-#warning TODO:
-				compressedLength = 0;
+                compressedLength = 0;
 				/*using (Lz4EncodeStream lz4Stream = new Lz4EncodeStream(blobMem, blobMem.Length))
 				{
 					lz4Stream.Write(memStream);

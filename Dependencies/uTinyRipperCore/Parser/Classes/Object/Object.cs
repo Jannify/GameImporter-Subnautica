@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using uTinyRipper.YAML;
@@ -83,7 +83,7 @@ namespace uTinyRipper.Classes
 			return node;
 		}
 
-#warning TODO: remove this whole block
+//#warning TODO: remove this whole block
 		public AssetInfo AssetInfo { get; set; }
 		public ISerializedFile File => AssetInfo.File;
 		public virtual ClassIDType ClassID => AssetInfo.ClassID;

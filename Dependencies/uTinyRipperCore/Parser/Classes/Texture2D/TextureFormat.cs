@@ -1,4 +1,4 @@
-namespace uTinyRipper.Classes.Textures
+﻿namespace uTinyRipper.Classes.Textures
 {
 	public enum TextureFormat
 	{
@@ -267,7 +267,7 @@ namespace uTinyRipper.Classes.Textures
 
 	public static class TextureFormatExtensions
 	{
-#warning TODO: check version?
+//#warning TODO: check version?
 		public static TextureFormat ToDefaultFormat(this TextureFormat _this)
 		{
 			if (_this == TextureFormat.R8)

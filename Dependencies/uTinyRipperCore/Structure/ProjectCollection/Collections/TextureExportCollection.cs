@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using uTinyRipper.Classes;
@@ -13,7 +13,7 @@ namespace uTinyRipper.Project
 {
 	public class TextureExportCollection : AssetsExportCollection
 	{
-#warning TODO: optimize (now it is suuuuuuuuper slow)
+//#warning TODO: optimize (now it is suuuuuuuuper slow)
 		public TextureExportCollection(IAssetExporter assetExporter, Texture2D texture, bool convert):
 			base(assetExporter, texture)
 		{
@@ -192,8 +192,7 @@ namespace uTinyRipper.Project
 				{
 					foreach (Sprite sprite in m_sprites.Keys)
 					{
-#warning TODO: TEMP:
-						long exportID = GetExportID(sprite);
+                        long exportID = GetExportID(sprite);
 						ref SpriteMetaData smeta = ref importer.SpriteSheet.GetSpriteMetaData(sprite.Name);
 						smeta.InternalID = exportID;
 						Tuple<ClassIDType, long> key = new Tuple<ClassIDType, long>(ClassIDType.Sprite, exportID);

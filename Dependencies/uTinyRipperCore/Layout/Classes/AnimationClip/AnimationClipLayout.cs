@@ -3,8 +3,7 @@ using uTinyRipper.Layout.AnimationClips;
 
 namespace uTinyRipper.Layout
 {
-#warning TODO:
-	public sealed class AnimationClipLayout
+    public sealed class AnimationClipLayout
 	{
 		public AnimationClipLayout(LayoutInfo info)
 		{

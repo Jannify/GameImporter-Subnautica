@@ -3,7 +3,7 @@ using uTinyRipper.YAML;
 
 namespace uTinyRipper.Classes.AudioMixers
 {
-#warning TODO: not implemented
+//#warning TODO: not implemented
 	public struct SnapshotConstant : IAssetReadable, IYAMLExportable
 	{
 		/*public static int ToSerializedVersion(Version version)

@@ -1,6 +1,6 @@
-namespace uTinyRipper.Game.Assembly
+﻿namespace uTinyRipper.Game.Assembly
 {
-#warning TODO: rename
+//#warning TODO: rename
 	public enum ScriptingBackend
 	{
 		Unknown,

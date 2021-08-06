@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using uTinyRipper.Classes.Fonts;
@@ -211,7 +211,7 @@ namespace uTinyRipper.Classes
 				}
 			}
 
-#warning TODO: create a dictionary with non unique keys
+//#warning TODO: create a dictionary with non unique keys
 			if (IsByteKerningValues(reader.Version))
 			{
 				Dictionary<Tuple<byte, byte>, float> kerningValues = new Dictionary<Tuple<byte, byte>, float>();

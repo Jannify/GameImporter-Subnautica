@@ -1,4 +1,4 @@
-using SevenZip;
+﻿using SevenZip;
 using System;
 using System.Linq;
 using uTinyRipper.Classes;
@@ -221,7 +221,6 @@ namespace uTinyRipper.Converters.AnimationClips
 					}
 					throw new ArgumentException($"Unknown attribute {attribute} for {type}");
 
-#warning TODO:
 				case BindingCustomType.ParticleSystem:
 					return "ParticleSystem_" + attribute;
 				/*{
@@ -289,7 +288,6 @@ namespace uTinyRipper.Converters.AnimationClips
 					}
 					throw new ArgumentException($"Unknown attribute {attribute} for {type}");
 
-#warning TODO:
 				case BindingCustomType.LineRenderer:
 					{
 						const string ParametersWidthMultiplier = "m_Parameters" + "." + "widthMultiplier";
@@ -301,7 +299,6 @@ namespace uTinyRipper.Converters.AnimationClips
 					// TODO: old versions animate all properties as custom curves
 					return "LineRenderer_" + attribute;
 
-#warning TODO:
 				case BindingCustomType.TrailRenderer:
 					{
 						const string ParametersWidthMultiplier = "m_Parameters" + "." + "widthMultiplier";
@@ -313,7 +310,6 @@ namespace uTinyRipper.Converters.AnimationClips
 					// TODO: old versions animate all properties as custom curves
 					return "TrailRenderer_" + attribute;
 
-#warning TODO:
 				case BindingCustomType.PositionConstraint:
 					{
 						uint property = attribute & 0xF;
@@ -349,7 +345,6 @@ namespace uTinyRipper.Converters.AnimationClips
 					}
 					throw new ArgumentException($"Unknown attribute {attribute} for {type}");
 
-#warning TODO:
 				case BindingCustomType.RotationConstraint:
 					{
 						uint property = attribute & 0xF;
@@ -385,7 +380,6 @@ namespace uTinyRipper.Converters.AnimationClips
 					}
 					throw new ArgumentException($"Unknown attribute {attribute} for {type}");
 
-#warning TODO:
 				case BindingCustomType.ScaleConstraint:
 					{
 						uint property = attribute & 0xF;
@@ -421,7 +415,6 @@ namespace uTinyRipper.Converters.AnimationClips
 					}
 					throw new ArgumentException($"Unknown attribute {attribute} for {type}");
 
-#warning TODO:
 				case BindingCustomType.AimConstraint:
 					{
 						uint property = attribute & 0xF;
@@ -447,7 +440,6 @@ namespace uTinyRipper.Converters.AnimationClips
 					}
 					throw new ArgumentException($"Unknown attribute {attribute} for {type}");
 
-#warning TODO:
 				case BindingCustomType.ParentConstraint:
 					{
 						uint property = attribute & 0xF;
@@ -489,7 +481,6 @@ namespace uTinyRipper.Converters.AnimationClips
 					}
 					throw new ArgumentException($"Unknown attribute {attribute} for {type}");
 
-#warning TODO:
 				case BindingCustomType.LookAtConstraint:
 					{
 						uint property = attribute & 0xF;

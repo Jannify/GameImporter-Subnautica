@@ -44,7 +44,7 @@ namespace uTinyRipper.Converters.Meshes
 			}
 			else
 			{
-#warning TODO: convert Colors to FloatColors
+//#warning TODO: convert Colors to FloatColors
 				if (origin.Colors.IsSet)
 				{
 					Logger.Log(LogType.Warning, LogCategory.Export, "Color conversion isn't implemented");

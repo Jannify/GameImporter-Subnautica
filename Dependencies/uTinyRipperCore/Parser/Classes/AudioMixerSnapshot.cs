@@ -5,7 +5,7 @@ using uTinyRipper.Classes.Misc;
 
 namespace uTinyRipper.Classes
 {
-#warning TODO: not implemented
+//#warning TODO: not implemented
 	public sealed class AudioMixerSnapshot : NamedObject
 	{
 		public AudioMixerSnapshot(AssetInfo assetInfo) : base(assetInfo)

@@ -27,7 +27,7 @@ namespace uTinyRipper
 
 		private void ReadFile(SerializedFile file)
 		{
-#warning TODO: fix cross dependencies
+//#warning TODO: fix cross dependencies
 			m_knownFiles.Add(file.Name);
 			foreach (FileIdentifier dependency in file.Metadata.Externals)
 			{

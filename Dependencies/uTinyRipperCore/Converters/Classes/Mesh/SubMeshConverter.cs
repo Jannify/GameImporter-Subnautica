@@ -52,7 +52,7 @@ namespace uTinyRipper.Converters.Meshes
 			{
 				return origin.BaseVertex;
 			}
-#warning TODO: calculate or default value?
+//#warning TODO: calculate or default value?
 			return 0;
 		}
 

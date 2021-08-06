@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using uTinyRipper.Classes;
@@ -33,7 +33,7 @@ namespace uTinyRipper.Project
 				string resourcePath = Path.Combine(dirPath, $"{assetPath}.{GetExportExtension(asset)}");
 				subPath = Path.GetDirectoryName(resourcePath);
 				string resFileName = Path.GetFileName(resourcePath);
-#warning TODO: combine assets with the same res path into one big asset
+//#warning TODO: combine assets with the same res path into one big asset
 				// Unity distinguish assets with non unique path by its type, but file system doesn't support it
 				fileName = GetUniqueFileName(subPath, resFileName);
 			}

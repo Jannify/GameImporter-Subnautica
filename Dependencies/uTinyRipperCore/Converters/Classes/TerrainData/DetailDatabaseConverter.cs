@@ -40,7 +40,7 @@ namespace uTinyRipper.Converters.TerrainDatas
 			}
 			else
 			{
-#warning TODO: add references to builtin shader
+//#warning TODO: add references to builtin shader
 				throw new NotImplementedException();
 			}
 		}
@@ -53,7 +53,7 @@ namespace uTinyRipper.Converters.TerrainDatas
 			}
 			else
 			{
-#warning TODO: add references to builtin shader
+//#warning TODO: add references to builtin shader
 				throw new NotImplementedException();
 			}
 		}
@@ -66,7 +66,7 @@ namespace uTinyRipper.Converters.TerrainDatas
 			}
 			else
 			{
-#warning TODO: add references to builtin shader
+//#warning TODO: add references to builtin shader
 				throw new NotImplementedException();
 			}
 		}

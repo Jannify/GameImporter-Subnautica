@@ -114,8 +114,7 @@ namespace uTinyRipper.Classes
 
 		protected override YAMLMappingNode ExportYAMLRoot(IExportContainer container)
 		{
-#warning TODO:
-			YAMLMappingNode node = base.ExportYAMLRoot(container);
+            YAMLMappingNode node = base.ExportYAMLRoot(container);
 			node.InsertSerializedVersion(ToSerializedVersion(container.ExportVersion));
 			node.Add(ShaderName, Shader.ExportYAML(container));
 			node.Add(ShaderKeywordsName, HasKeywords(container.Version) ? (IsKeywordsArray(container.Version) ? string.Join(" ", ShaderKeywordsArray) : ShaderKeywords) : string.Empty);

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using uTinyRipper.YAML;
 using uTinyRipper.SerializedFiles;
@@ -44,7 +44,7 @@ namespace uTinyRipper.Classes
 					states.Add(state);
 				}
 			}
-#warning TODO: child StateMachines
+//#warning TODO: child StateMachines
 			ChildStateMachines = new ChildAnimatorStateMachine[stateMachineCount];
 
 			// set destination state for transitions here because all states has become valid only now
@@ -94,7 +94,7 @@ namespace uTinyRipper.Classes
 				Version = controller.File.Version,
 			};
 			EntryTransitions = stateMachine.CreateEntryTransitions(virtualFile, stateParameters);
-#warning TEMP: remove comment when AnimatorStateMachine's child StateMachines has been implemented
+//#warning TEMP: remove comment when AnimatorStateMachine's child StateMachines has been implemented
 			//StateMachineBehaviours = controller.GetStateBehaviours(layerIndex);
 			StateMachineBehaviours = Array.Empty<PPtr<MonoBehaviour>>();
 

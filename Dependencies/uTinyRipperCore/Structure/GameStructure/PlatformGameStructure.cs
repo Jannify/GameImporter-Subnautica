@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -243,7 +243,7 @@ namespace uTinyRipper
 
 		protected void AddAssetBundle(IDictionary<string, string> files, string name, string path)
 		{
-#warning TEMP HACK:
+//#warning TEMP HACK:
 			int i = 0;
 			string uniqueName = name;
 			while (files.ContainsKey(uniqueName))

@@ -1,11 +1,11 @@
-using uTinyRipper.Converters;
+﻿using uTinyRipper.Converters;
 using uTinyRipper.YAML;
 using uTinyRipper.Classes.Misc;
 using uTinyRipper;
 
 namespace uTinyRipper.Classes.AudioMixers
 {
-#warning TODO: not implemented
+//#warning TODO: not implemented
 	public struct AudioMixerConstant : IAssetReadable, IYAMLExportable
 	{
 		/*public static int ToSerializedVersion(Version version)

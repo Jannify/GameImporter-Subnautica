@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using uTinyRipper.YAML;
 using uTinyRipper.Converters;
@@ -6,7 +6,7 @@ using uTinyRipper.Classes.Misc;
 
 namespace uTinyRipper.Classes
 {
-#warning TODO: not implemented
+//#warning TODO: not implemented
 	public sealed class AudioMixerGroup : NamedObject
 	{
 		public AudioMixerGroup(AssetInfo assetInfo):

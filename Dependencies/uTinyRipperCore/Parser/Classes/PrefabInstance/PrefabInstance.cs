@@ -126,7 +126,7 @@ namespace uTinyRipper.Classes
 
 		public IEnumerable<EditorExtension> FetchObjects(IAssetContainer file)
 		{
-#warning TEMP HACK:
+//#warning TEMP HACK:
 			//if (file.Layout.PrefabInstance.IsModificationFormat)
 			{
 				foreach (EditorExtension asset in RootGameObject.GetAsset(file).FetchHierarchy())

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using uTinyRipper.Project;
 using uTinyRipper.YAML;
 using uTinyRipper.Classes.Objects;
@@ -139,7 +139,7 @@ namespace uTinyRipper.Classes
 				return PrefabInstance;
 			}
 #endif
-#warning TODO: set PrefabInstance for all assets in PrefabContainer
+//#warning TODO: set PrefabInstance for all assets in PrefabContainer
 			if (container.ExportFlags.IsForPrefab())
 			{
 				PrefabExportCollection prefabCollection = (PrefabExportCollection)container.CurrentCollection;
@@ -160,7 +160,7 @@ namespace uTinyRipper.Classes
 			set => PrefabInstance = value;
 		}
 
-#warning TODO: PPtr<EditorExtensionImpl>
+//#warning TODO: PPtr<EditorExtensionImpl>
 		public PPtr<Object> ExtensionPtr;
 		public PPtr<EditorExtension> CorrespondingSourceObject;
 		public PPtr<PrefabInstance> PrefabInstance;

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using uTinyRipper.Classes.SpriteAtlases;
 using uTinyRipper.Classes.Sprites;
@@ -18,11 +18,10 @@ namespace uTinyRipper.Classes
 
 		public static int ToSerializedVersion(Version version)
 		{
-#warning TODO:
-			/*if (version.IsGreaterEqual(2018))
-			{
-				return 2;
-			}*/
+            /*if (version.IsGreaterEqual(2018))
+            {
+                return 2;
+            }*/
 			return 1;
 		}
 

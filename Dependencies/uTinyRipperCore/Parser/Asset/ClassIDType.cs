@@ -1,4 +1,4 @@
-namespace uTinyRipper
+﻿namespace uTinyRipper
 {
 	// Since some output is based on string representation renamed values has negative index
 	public enum ClassIDType
@@ -240,12 +240,12 @@ namespace uTinyRipper
 		CrashReportManager				= 304,
 		PerformanceReportingManager		= 305,
 		UnityConnectSettings			= 310,
-#warning TODO: merge with AvatarMaskOld (since 5.6.0b3)
+//#warning TODO: merge with AvatarMaskOld (since 5.6.0b3)
 		AvatarMask						= 319,
 		PlayableDirector				= 320,
 		VideoClipOld					= 327,
 		VideoPlayer						= 328,
-#warning TODO: merge with VideoClipOld (since 5.6.0b10)
+//#warning TODO: merge with VideoClipOld (since 5.6.0b10)
 		VideoClip						= 329,
 		ParticleSystemForceField		= 330,
 		SpriteMask						= 331,

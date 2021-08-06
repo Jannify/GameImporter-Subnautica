@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace uTinyRipper.Classes.Shaders
@@ -300,8 +300,7 @@ namespace uTinyRipper.Classes.Shaders
 
 		public void Write(AssetWriter writer)
 		{
-#warning TODO:
-			throw new NotImplementedException();
+            throw new NotImplementedException();
 		}
 
 		public void Export(ShaderWriter writer, ShaderType type)
@@ -324,7 +323,7 @@ namespace uTinyRipper.Classes.Shaders
 				writer.WriteIndent(5);
 			}
 
-#warning TODO: convertion (DX to HLSL)
+//#warning TODO: convertion (DX to HLSL)
 			ShaderGpuProgramType programType = GetProgramType(writer.Version);
 			writer.Write("\"{0}", programType.ToProgramDataKeyword(writer.Platform, type));
 			if (ProgramData.Length > 0)

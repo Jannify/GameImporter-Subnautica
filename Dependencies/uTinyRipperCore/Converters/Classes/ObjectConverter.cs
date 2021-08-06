@@ -22,7 +22,7 @@ namespace uTinyRipper.Converters
 			{
 				return origin.ObjectHideFlags;
 			}
-#warning TODO: set those flags at the moment of creation a prefab
+//#warning TODO: set those flags at the moment of creation a prefab
 			if (origin.ClassID == ClassIDType.GameObject)
 			{
 				GameObject originGameObject = (GameObject)origin;

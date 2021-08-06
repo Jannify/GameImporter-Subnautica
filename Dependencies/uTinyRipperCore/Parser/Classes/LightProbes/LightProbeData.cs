@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using uTinyRipper.Converters;
 using uTinyRipper.YAML;
 using uTinyRipper.Classes.Misc;
@@ -37,8 +37,7 @@ namespace uTinyRipper.Classes.LightProbess
 
 		public YAMLNode ExportYAML(IExportContainer container)
 		{
-#warning TODO:
-			YAMLMappingNode node = new YAMLMappingNode();
+            YAMLMappingNode node = new YAMLMappingNode();
 			node.Add(TetrahedralizationName, Tetrahedralization.ExportYAML(container));
 			node.Add(ProbeSetsName, HasProbeSets(container.Version) ? ProbeSets.ExportYAML(container) : YAMLSequenceNode.Empty);
 			node.Add(PositionsName, HasProbeSets(container.Version) ? Positions.ExportYAML(container) : YAMLSequenceNode.Empty);

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using uTinyRipper.Classes.Renderers;
 using uTinyRipper.Classes.Terrains;
 using uTinyRipper.YAML;
@@ -292,7 +292,7 @@ namespace uTinyRipper.Classes
 			{
 				node.Add(DeringLightProbesForTreesName, GetDeringLightProbesForTrees(container.Version, container.Flags));
 			}
-#warning TODO: get lightmap by index and fill those values
+//#warning TODO: get lightmap by index and fill those values
 			node.Add(ScaleInLightmapName, GetScaleInLightmap(container.Flags));
 			node.Add(LightmapParametersName, GetLightmapParameters(container.Flags).ExportYAML(container));
 			if (HasGroupingID(container.ExportVersion))

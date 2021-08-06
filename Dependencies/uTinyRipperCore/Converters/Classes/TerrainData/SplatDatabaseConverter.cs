@@ -48,7 +48,7 @@ namespace uTinyRipper.Converters.TerrainDatas
 			}
 			else
 			{
-#warning TODO: convert SplatPrototype to TerrainLayer and add new asset to new SerializedFile
+//#warning TODO: convert SplatPrototype to TerrainLayer and add new asset to new SerializedFile
 				throw new NotImplementedException();
 			}
 		}

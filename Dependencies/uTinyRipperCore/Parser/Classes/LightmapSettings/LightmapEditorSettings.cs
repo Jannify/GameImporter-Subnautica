@@ -13,8 +13,7 @@ namespace uTinyRipper.Classes.LightmapSettingss
 		public LightmapEditorSettings(Version version):
 			this()
 		{
-#warning TODO:
-			Resolution = 2.0f;
+            Resolution = 2.0f;
 			BakeResolution = 40.0f;
 			TextureWidth = 1024;
 			TextureHeight = 1024;

@@ -2,7 +2,7 @@
 
 namespace uTinyRipper.SerializedFiles
 {
-#warning TODO: move to classes
+//#warning TODO: move to classes
 	/// <summary>
 	/// A serialized file may be linked with other serialized files to create shared dependencies.
 	/// </summary>

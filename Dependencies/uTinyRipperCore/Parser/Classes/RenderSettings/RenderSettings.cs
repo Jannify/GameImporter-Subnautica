@@ -17,11 +17,10 @@ namespace uTinyRipper.Classes
 
 		public static int ToSerializedVersion(Version version)
 		{
-#warning TODO:
-			/*if (version.IsGreaterEqual(2018))
-			{
-				return 9;
-			}*/
+            /*if (version.IsGreaterEqual(2018))
+            {
+                return 9;
+            }*/
 			if (version.IsGreaterEqual(5, 6, 0, VersionType.Beta, 2))
 			{
 				return 8;

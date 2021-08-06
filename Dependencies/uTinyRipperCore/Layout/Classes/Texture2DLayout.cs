@@ -2,8 +2,7 @@
 
 namespace uTinyRipper.Layout
 {
-#warning TODO:
-	public sealed class Texture2DLayout
+    public sealed class Texture2DLayout
 	{
 		public Texture2DLayout(LayoutInfo info)
 		{

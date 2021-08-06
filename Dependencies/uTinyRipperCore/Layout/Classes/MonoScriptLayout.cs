@@ -2,8 +2,7 @@
 
 namespace uTinyRipper.Layout
 {
-#warning TODO:
-	public sealed class MonoScriptLayout
+    public sealed class MonoScriptLayout
 	{
 		public MonoScriptLayout(LayoutInfo info)
 		{

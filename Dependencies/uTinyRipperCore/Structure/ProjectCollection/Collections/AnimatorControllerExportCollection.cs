@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using uTinyRipper.Classes;
 using uTinyRipper.Classes.AnimatorControllers;
 using uTinyRipper.Converters;
@@ -91,7 +91,7 @@ namespace uTinyRipper.Project
 				MonoBehaviour behaviour = pbehaviour.FindAsset(asset.File);
 				if (behaviour != null)
 				{
-#warning HACK: skip duplicates. remove it when AnimatorStateMachine's child StateMachines has been implemented
+//#warning HACK: skip duplicates. remove it when AnimatorStateMachine's child StateMachines has been implemented
 					if (!m_exportIDs.ContainsKey(behaviour.AssetInfo))
 					{
 						AddAsset(behaviour);

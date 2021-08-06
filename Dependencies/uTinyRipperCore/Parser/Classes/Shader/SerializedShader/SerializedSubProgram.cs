@@ -1,4 +1,4 @@
-namespace uTinyRipper.Classes.Shaders
+﻿namespace uTinyRipper.Classes.Shaders
 {
 	public struct SerializedSubProgram : IAssetReadable
 	{
@@ -73,7 +73,7 @@ namespace uTinyRipper.Classes.Shaders
 		public void Export(ShaderWriter writer, ShaderType type, bool isTier)
 		{
 			writer.WriteIndent(4);
-#warning TODO: convertion (DX to HLSL)
+//#warning TODO: convertion (DX to HLSL)
 			ShaderGpuProgramType programType = GetProgramType(writer.Version);
 			GPUPlatform graphicApi = programType.ToGPUPlatform(writer.Platform);
 			writer.Write("SubProgram \"{0} ", graphicApi);

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using uTinyRipper.YAML;
 using uTinyRipper.SerializedFiles;
@@ -43,7 +43,7 @@ namespace uTinyRipper.Classes
 			List<PPtr<MonoBehaviour>> behaviours = new List<PPtr<MonoBehaviour>>(stateBehaviours.Length);
 			foreach (PPtr<MonoBehaviour> ptr in stateBehaviours)
 			{
-#warning TEMP: remove comment when AnimatorStateMachine's child StateMachines has been implemented
+//#warning TEMP: remove comment when AnimatorStateMachine's child StateMachines has been implemented
 				//if (!machineBehaviours.Contains(ptr))
 				{
 					behaviours.Add(ptr);

@@ -265,7 +265,7 @@ namespace uTinyRipper.Converters
 			}
 			else
 			{
-#warning TODO: convert MeshTopology.Deprecated indices to MeshTopology.Triangles
+//#warning TODO: convert MeshTopology.Deprecated indices to MeshTopology.Triangles
 				if (container.Platform == container.ExportPlatform ||
 					container.Platform != Platform.XBox360 && container.ExportPlatform != Platform.XBox360)
 				{

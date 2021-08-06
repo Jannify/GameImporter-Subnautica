@@ -15,7 +15,7 @@ namespace uTinyRipper.Classes.AnimatorControllers
 
 			StateMachine = stateMachine.File.CreatePPtr(stateMachine);
 
-#warning TODO: animator
+//#warning TODO: animator
 			Mask = default;
 
 			Motions = System.Array.Empty<StateMotionPair>();

@@ -1,4 +1,4 @@
-using uTinyRipper.Converters;
+﻿using uTinyRipper.Converters;
 using uTinyRipper.YAML;
 
 namespace uTinyRipper.Classes.LightmapSettingss
@@ -10,8 +10,7 @@ namespace uTinyRipper.Classes.LightmapSettingss
 	{
 		public GISettings(bool _)
 		{
-#warning TODO:
-			SkyLightColor = default;
+            SkyLightColor = default;
 			SkyLightIntensity = default;
 			BounceScale = 1.0f;
 			IndirectOutputScale = 1.0f;

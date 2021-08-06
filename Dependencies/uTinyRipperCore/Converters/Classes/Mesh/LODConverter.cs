@@ -42,7 +42,7 @@ namespace uTinyRipper.Converters.Meshes
 				MeshData meshData = origin.MeshData[i];
 				SubMesh instance = new SubMesh();
 				instance.FirstByte = offset;
-#warning TODO: stripping
+//#warning TODO: stripping
 				int indexCount = meshData.Faces.Length * 3;
 				instance.IndexCount = indexCount;
 				instance.Topology = MeshTopology.Triangles;

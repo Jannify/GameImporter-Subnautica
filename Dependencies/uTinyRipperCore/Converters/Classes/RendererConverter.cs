@@ -6,8 +6,7 @@ namespace uTinyRipper.Converters
 	{
 		public static void Convert(IExportContainer container, Renderer origin, Renderer instance)
 		{
-#warning TODO:
-			ComponentConverter.Convert(container, origin, instance);
+            ComponentConverter.Convert(container, origin, instance);
 			instance.Enabled = origin.Enabled;
 			instance.CastShadows = origin.CastShadows;
 			instance.ReceiveShadows = origin.ReceiveShadows;

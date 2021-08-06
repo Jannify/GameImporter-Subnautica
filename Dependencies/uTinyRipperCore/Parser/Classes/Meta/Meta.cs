@@ -34,8 +34,7 @@ namespace uTinyRipper.Classes
 
 		public static int ToFileFormatVersion(Version version)
 		{
-#warning TODO:
-			return 2;
+            return 2;
 		}
 
 		public YAMLDocument ExportYAMLDocument(IExportContainer container)

@@ -1,4 +1,4 @@
-using Mono.Cecil;
+﻿using Mono.Cecil;
 using Mono.Cecil.Metadata;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using uTinyRipper.Game.Assembly.Mono;
 
 namespace uTinyRipper
 {
-#warning TODO: merge with other Script/Mono static methods
+//#warning TODO: merge with other Script/Mono static methods
 	public static class MonoUtils
 	{
 		public static bool IsSerializablePrimitive(TypeReference type)

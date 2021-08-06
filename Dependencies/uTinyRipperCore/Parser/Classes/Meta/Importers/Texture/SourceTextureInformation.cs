@@ -9,7 +9,7 @@ namespace uTinyRipper.Classes.TextureImporters
 		public SourceTextureInformation(AssetLayout layout) :
 			this()
 		{
-#warning TODO: default values
+//#warning TODO: default values
 		}
 
 		/// <summary>

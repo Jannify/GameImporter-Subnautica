@@ -1,10 +1,10 @@
-using uTinyRipper.Project;
+﻿using uTinyRipper.Project;
 using uTinyRipper.Classes;
 using uTinyRipper.Layout;
 
 namespace uTinyRipper.Converters
 {
-#warning TODO: remove
+//#warning TODO: remove
 	public interface IExportContainer : IAssetContainer
 	{
 		long GetExportID(Object asset);

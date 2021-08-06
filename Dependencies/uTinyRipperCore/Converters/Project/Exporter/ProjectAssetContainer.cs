@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using uTinyRipper.Classes;
@@ -48,7 +48,7 @@ namespace uTinyRipper.Converters
 			{
 				foreach (Object asset in collection.Assets)
 				{
-#warning TODO: unique asset:collection (m_assetCollections.Add)
+//#warning TODO: unique asset:collection (m_assetCollections.Add)
 					m_assetCollections[asset.AssetInfo] = collection;
 				}
 				if (collection is SceneExportCollection scene)
@@ -59,7 +59,7 @@ namespace uTinyRipper.Converters
 			m_scenes = scenes.ToArray();
 		}
 
-#warning TODO: get rid of IEnumerable. pass only main asset (issues: prefab, texture with sprites, animatorController)
+//#warning TODO: get rid of IEnumerable. pass only main asset (issues: prefab, texture with sprites, animatorController)
 		public bool TryGetAssetPathFromAssets(IEnumerable<Object> assets, out Object selectedAsset, out string assetPath)
 		{
 			selectedAsset = null;
@@ -341,7 +341,7 @@ namespace uTinyRipper.Converters
 					m_pathAssets.Add(asset, new ProjectAssetPath(directory, assetPath));
 				}
 			}
-#warning TODO: asset bundle may contains more assets than listed in Container. need to export them in AssetBundleFullPath directory if KeepAssetBundleContentPath is false
+//#warning TODO: asset bundle may contains more assets than listed in Container. need to export them in AssetBundleFullPath directory if KeepAssetBundleContentPath is false
 		}
 
 		public IExportCollection CurrentCollection { get; set; }
