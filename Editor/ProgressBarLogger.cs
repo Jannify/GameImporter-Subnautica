@@ -6,9 +6,12 @@ namespace PassivePicasso.GameImporter
 {
     public class ProgressBarLogger : ILogger, IDisposable
     {
+        private string task = "Analyzing Game";
+        private float progress;
+
         public ProgressBarLogger()
         {
-            EditorUtility.DisplayProgressBar("Analyzing Game", $"", 0);
+            EditorUtility.DisplayProgressBar(task, "", 0);
         }
 
         public void Dispose()
@@ -22,10 +25,23 @@ namespace PassivePicasso.GameImporter
             {
                 case LogType.Error:
                     throw new Exception(message);
+                case LogType.Warning:
+                    UnityEngine.Debug.LogWarning(message);
+                    break;
                 default:
-                    EditorUtility.DisplayProgressBar("Analyzing Game", message, 0);
+                    EditorUtility.DisplayProgressBar(task, message, progress);
                     break;
             }
+        }
+
+        public void UpdateProgress(float progress)
+        {
+            this.progress = progress;
+        }
+
+        public void UpdateTask(string task)
+        {
+            this.task = task;
         }
     }
 }

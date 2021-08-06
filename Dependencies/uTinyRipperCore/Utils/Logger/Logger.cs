@@ -7,6 +7,8 @@
             Instance?.Log(type, category, message);
         }
 
+        public static void UpdateProgress(float progress) => Instance?.UpdateProgress(progress);
+
 		public static ILogger Instance { get; set; }
 	}
 }

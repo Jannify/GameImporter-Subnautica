@@ -58,7 +58,12 @@ namespace ThunderKit.uTinyRipper
 			Console.ForegroundColor = foreColor;
 		}
 
-		public static ConsoleLogger Instance { get; } = new ConsoleLogger();
+        public void UpdateProgress(float progress)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static ConsoleLogger Instance { get; } = new ConsoleLogger();
 
 		private static bool IsConsoleConfigAvailable
 		{
