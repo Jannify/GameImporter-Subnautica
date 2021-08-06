@@ -14,6 +14,7 @@ using Version = uTinyRipper.Version;
 using Logger = uTinyRipper.Logger;
 using LogType = uTinyRipper.LogType;
 using UnityEngine;
+using uTinyRipperGUI.Exporters;
 using ILogger = uTinyRipper.ILogger;
 
 namespace ThunderKit.uTinyRipper
@@ -131,14 +132,24 @@ namespace ThunderKit.uTinyRipper
 
         private void EnableExport(ClassIDType cls, ProjectExporter exporter)
         {
+            TextureAssetExporter textureExporter = new TextureAssetExporter();
+
             switch (cls)
             {
                 case ClassIDType.Shader:
-                case ClassIDType.AudioClip:
                     exporter.OverrideBinaryExporter(cls);
                     break;
 
-                case ClassIDType.MonoScript:
+                case ClassIDType.AudioClip:
+                    exporter.OverrideExporter(cls, new AudioAssetExporter());
+                    break;
+
+                case ClassIDType.MovieTexture:
+                    exporter.OverrideExporter(cls, new MovieTextureAssetExporter());
+                    break;
+
+                case ClassIDType.TextAsset:
+                    exporter.OverrideExporter(cls, new TextAssetExporter());
                     break;
 
                 case ClassIDType.MonoManager:
@@ -148,9 +159,29 @@ namespace ThunderKit.uTinyRipper
                     exporter.OverrideDummyExporter(cls, true, false);
                     break;
 
+                //Custom edits
+                case ClassIDType.Material:
+                case ClassIDType.Mesh:
+                    exporter.OverrideExporter(cls, new EngineAssetExporter());
+                    break;
+
+                case ClassIDType.MonoScript:
+                    break;
+
+                case ClassIDType.Font:
+                    exporter.OverrideExporter(cls, new FontAssetExporter());
+                    break;
+
+                case ClassIDType.Texture2D:
+                case ClassIDType.Cubemap:
                 case ClassIDType.Sprite:
+                    exporter.OverrideExporter(cls, textureExporter);
+                    break;
+
+                case ClassIDType.Texture3D:
                     exporter.OverrideDummyExporter(cls, false, true);
                     break;
+                // End custom edits
 
                 case ClassIDType.BuildSettings:
                 case ClassIDType.EditorSettings:
