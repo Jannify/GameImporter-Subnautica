@@ -9,5 +9,8 @@
     "name": "PassivePicasso",
     "url": "https://github.com/PassivePicasso/GameImporter"
   },
-  "dependencies": {}
+  "dependencies": {
+    "com.passivepicasso.thunderkit": "3.3.0"
+  },
+  "type": "tool"
 }

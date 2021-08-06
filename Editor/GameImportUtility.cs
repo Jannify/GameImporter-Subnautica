@@ -1,4 +1,5 @@
-﻿using System;
+#define UNITY_2019_1_OR_NEWER
+using System;
 using System.Linq;
 using ThunderKit.Core.Data;
 using ThunderKit.uTinyRipper;
@@ -23,6 +24,7 @@ namespace PassivePicasso.GameImporter
         private ListView typeList;
         private ListView addTypeList;
         private string searchValue;
+
         public override void CreateSettingsUI(VisualElement rootElement)
         {
             var importUtilitySo = new SerializedObject(GetOrCreateSettings<GameImportUtility>());

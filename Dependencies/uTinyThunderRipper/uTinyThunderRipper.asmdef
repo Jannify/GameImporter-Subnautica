@@ -1,16 +1,21 @@
 {
     "name": "uTinyThunderRipper",
     "references": [
-        "uTinyRipperCore"
+        "uTinyRipperCore",
+        "ThunderKit.Core"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [
         "Editor"
     ],
     "excludePlatforms": [],
-    "allowUnsafeCode": false,
+    "allowUnsafeCode": true,
     "overrideReferences": true,
-    "precompiledReferences": [],
+    "precompiledReferences": [
+        "System.Drawing.dll"
+    ],
     "autoReferenced": false,
-    "defineConstraints": []
+    "defineConstraints": [
+        "UNITY_2019_1_OR_NEWER"
+    ],
+    "versionDefines": []
 }
