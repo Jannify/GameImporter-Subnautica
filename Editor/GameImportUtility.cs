@@ -1,9 +1,12 @@
 ﻿#define UNITY_2019_1_OR_NEWER
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using ThunderKit.Core.Data;
 using ThunderKit.uTinyRipper;
 using UnityEditor;
+using UnityEngine;
 using uTinyRipper;
 #if UNITY_2019_1_OR_NEWER
 using UnityEditor.UIElements;
@@ -84,7 +87,7 @@ namespace PassivePicasso.GameImporter
 
         private void UpdateClassIDTypes(object obj, bool remove)
         {
-            var enumer = remove ? ClassIDTypes.Where(cid => !cid.Equals((ClassIDType)obj)) : ClassIDTypes.Append((ClassIDType)obj);
+            IEnumerable<ClassIDType> enumer = remove ? ClassIDTypes.Where(cid => !cid.Equals((ClassIDType)obj)) : ClassIDTypes.Append((ClassIDType)obj);
             ClassIDTypes = enumer.OrderBy(cid => $"{cid}").ToArray();
 
             typeList.itemsSource = ClassIDTypes;
@@ -96,7 +99,7 @@ namespace PassivePicasso.GameImporter
             var acidt = Enum.GetValues(typeof(ClassIDType))
                                       .OfType<ClassIDType>()
                                       .Where(cid => !ClassIDTypes.Contains(cid));
-            
+
             if (!string.IsNullOrWhiteSpace(searchValue))
                 acidt = acidt.Where(c => $"{c}".IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) > -1);
 
@@ -117,34 +120,66 @@ namespace PassivePicasso.GameImporter
         private VisualElement MakeTypesItem() => new Label();
         private void BindTypesItem(VisualElement element, int index)
         {
-            if (!(element is Label label)) return;
-
-            label.text = $"{ClassIDTypes[index]}";
+            if (element is Label label)
+            {
+                label.text = $"{ClassIDTypes[index]}";
+            }
         }
 
         private void BindAllTypesItem(VisualElement element, int index)
         {
-            if (!(element is Label label)) return;
+            if (!(element is Label label))
+                return;
 
             label.text = $"{AllClassIDTypes[index]}";
         }
 
         [InitializeOnLoadMethod]
-        static void InitializeImporter()
+        private static void InitializeImporter()
         {
             GetOrCreateSettings<GameImportUtility>();
         }
 
         [MenuItem("Tools/SubnauticaImporter/Asset Importer", false, 1)]
-        static void Import()
+        private static void Import()
         {
-            var ripper = CreateInstance<SimpleRipperInterface>();
-            var tkSettings = GetOrCreateSettings<ThunderKitSettings>();
-            var importUtility = GetOrCreateSettings<GameImportUtility>();
-            using (var progressBarLogger = new ProgressBarLogger())
-                ripper.Load(tkSettings.GamePath, importUtility.ClassIDTypes, Platform.StandaloneWin64Player, TransferInstructionFlags.AllowTextSerialization, progressBarLogger);
+            SimpleRipperInterface ripper = CreateInstance<SimpleRipperInterface>();
+            ThunderKitSettings tkSettings = GetOrCreateSettings<ThunderKitSettings>();
+            GameImportUtility importUtility = GetOrCreateSettings<GameImportUtility>();
+            ProgressBarLogger progressBarLogger = new ProgressBarLogger();
+            ripper.Load(tkSettings.GamePath, importUtility.ClassIDTypes, Platform.StandaloneWin64Player, TransferInstructionFlags.AllowTextSerialization, progressBarLogger);
+
+            //Moving Assets to Subnautica package
+            string destPath = Path.Combine(Environment.CurrentDirectory, "Packages", "Subnautica", "Assets");
+            Directory.CreateDirectory(destPath);
+
+            foreach (string file in Directory.GetFiles(Application.dataPath))
+            {
+                if (file.EndsWith("Nitrox.meta") || file.EndsWith("ThunderKitSettings.meta") ||
+                    file.EndsWith("csc.rsp") || file.EndsWith("csc.rsp.meta"))
+                {
+                    continue;
+                }
+
+                File.Move(file, destPath);
+            }
+
+            string[] directories = Directory.GetDirectories(Application.dataPath);
+            for (int index = 0; index < directories.Length; index++)
+            {
+                string directory = directories[index];
+                if (directory.EndsWith("Nitrox") || directory.EndsWith("ThunderKitSettings"))
+                {
+                    continue;
+                }
+
+                progressBarLogger.Log(uTinyRipper.LogType.Info, LogCategory.General, "Moving Assets to Package", (float) index / directories.Length);
+                Directory.Move(directory, destPath);
+            }
 
             AssetDatabase.Refresh();
+
+            progressBarLogger.Dispose();
         }
     }
 }

@@ -152,6 +152,13 @@ namespace ThunderKit.uTinyRipper
                     exporter.OverrideExporter(cls, new TextAssetExporter());
                     break;
 
+                case ClassIDType.Font:
+                    exporter.OverrideExporter(cls, new FontAssetExporter());
+                    break;
+
+                case ClassIDType.MonoScript:
+                    break;
+
                 case ClassIDType.MonoManager:
                 case ClassIDType.AssetBundle:
                 case ClassIDType.ResourceManager:
@@ -159,29 +166,11 @@ namespace ThunderKit.uTinyRipper
                     exporter.OverrideDummyExporter(cls, true, false);
                     break;
 
-                //Custom edits
-                case ClassIDType.Material:
-                case ClassIDType.Mesh:
-                    exporter.OverrideExporter(cls, new EngineAssetExporter());
-                    break;
-
-                case ClassIDType.MonoScript:
-                    break;
-
-                case ClassIDType.Font:
-                    exporter.OverrideExporter(cls, new FontAssetExporter());
-                    break;
-
                 case ClassIDType.Texture2D:
                 case ClassIDType.Cubemap:
                 case ClassIDType.Sprite:
                     exporter.OverrideExporter(cls, textureExporter);
                     break;
-
-                case ClassIDType.Texture3D:
-                    exporter.OverrideDummyExporter(cls, false, true);
-                    break;
-                // End custom edits
 
                 case ClassIDType.BuildSettings:
                 case ClassIDType.EditorSettings:

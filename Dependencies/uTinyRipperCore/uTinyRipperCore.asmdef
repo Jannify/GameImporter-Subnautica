@@ -1,7 +1,6 @@
 {
     "name": "uTinyRipperCore",
     "references": [],
-    "optionalUnityReferences": [],
     "includePlatforms": [
         "Editor"
     ],
@@ -10,5 +9,6 @@
     "overrideReferences": true,
     "precompiledReferences": [],
     "autoReferenced": false,
-    "defineConstraints": []
+    "defineConstraints": [],
+    "versionDefines": []
 }

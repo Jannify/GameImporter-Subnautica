@@ -1,4 +1,4 @@
-﻿using Packages.ThunderKit.GameImporter.Editor.SNFixes;
+using Packages.ThunderKit.GameImporter.Editor.SNFixes;
 using PassivePicasso.GameImporter.SN_Fixes;
 using UnityEditor;
 using UnityEngine;
