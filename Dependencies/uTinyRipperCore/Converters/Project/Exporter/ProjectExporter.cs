@@ -261,13 +261,11 @@ namespace uTinyRipper.Converters
 				bool isExported = collection.Export(container, path);
 				if (isExported)
 				{
-					Logger.Log(LogType.Info, LogCategory.Export, $"'{collection.Name}' exported");
-                    Logger.UpdateProgress((float) i / collections.Count);
+					Logger.Log(LogType.Info, LogCategory.Export, $"'{collection.Name}' exported", (float) i / collections.Count);
 				}
 				EventExportProgressUpdated?.Invoke(i, collections.Count);
 			}
 			EventExportFinished?.Invoke();
-            Logger.UpdateProgress(0);
 		}
 
 		public AssetType ToExportType(ClassIDType classID)

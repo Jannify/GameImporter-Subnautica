@@ -7,7 +7,6 @@ namespace PassivePicasso.GameImporter
     public class ProgressBarLogger : ILogger, IDisposable
     {
         private string task = "Analyzing Game";
-        private float progress;
 
         public ProgressBarLogger()
         {
@@ -19,7 +18,7 @@ namespace PassivePicasso.GameImporter
             EditorUtility.ClearProgressBar();
         }
 
-        public void Log(LogType type, LogCategory category, string message)
+        public void Log(LogType type, LogCategory category, string message, float progress = 0)
         {
             switch (type)
             {
@@ -32,11 +31,6 @@ namespace PassivePicasso.GameImporter
                     EditorUtility.DisplayProgressBar(task, message, progress);
                     break;
             }
-        }
-
-        public void UpdateProgress(float progress)
-        {
-            this.progress = progress;
         }
 
         public void UpdateTask(string task)

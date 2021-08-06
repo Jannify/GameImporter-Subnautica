@@ -21,7 +21,7 @@ namespace ThunderKit.uTinyRipper
 			}
 		}
 
-		public void Log(LogType type, LogCategory category, string message)
+		public void Log(LogType type, LogCategory category, string message, float _)
 		{
 #if !DEBUG
 			if(category == LogCategory.Debug)
@@ -57,11 +57,6 @@ namespace ThunderKit.uTinyRipper
 			Console.BackgroundColor = backColor;
 			Console.ForegroundColor = foreColor;
 		}
-
-        public void UpdateProgress(float progress)
-        {
-            throw new NotImplementedException();
-        }
 
         public static ConsoleLogger Instance { get; } = new ConsoleLogger();
 

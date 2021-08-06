@@ -1,4 +1,4 @@
-#define UNITY_2019_1_OR_NEWER
+﻿#define UNITY_2019_1_OR_NEWER
 using System;
 using System.Linq;
 using ThunderKit.Core.Data;
@@ -135,7 +135,7 @@ namespace PassivePicasso.GameImporter
             GetOrCreateSettings<GameImportUtility>();
         }
 
-        [MenuItem("Tools/Game Asset Importer")]
+        [MenuItem("Tools/SubnauticaImporter/Asset Importer", false, 1)]
         static void Import()
         {
             var ripper = CreateInstance<SimpleRipperInterface>();
