@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using PassivePicasso.GameImporter;
 using PassivePicasso.GameImporter.SN_Fixes;
 using uTinyRipper;
 
@@ -53,17 +52,20 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
             return "Reassigning missing UnityEngine.UI references";
         }
 
-        public void Run(ProgressBarLogger logger, string assetPath)
+        public void Run() => UnityUIReferenceFix();
+
+
+        public static void UnityUIReferenceFix()
         {
             List<string> files = new List<string>();
-            files.AddRange(Directory.GetFiles(assetPath, "*.unity", SearchOption.AllDirectories));
-            files.AddRange(Directory.GetFiles(assetPath, "*.prefab", SearchOption.AllDirectories));
+            files.AddRange(Directory.GetFiles(SNFixesUtility.AssetPath, "*.unity", SearchOption.AllDirectories));
+            files.AddRange(Directory.GetFiles(SNFixesUtility.AssetPath, "*.prefab", SearchOption.AllDirectories));
 
             for (int index = 0; index < files.Count; index++)
             {
                 string file = files[index];
                 ApplyFile(file);
-                logger.Log(LogType.Info, LogCategory.General, file.Split('\\').Last(), (float)index / files.Count);
+                SNFixesUtility.Logger.Log(LogType.Info, LogCategory.General, file.Split('\\').Last(), (float)index / files.Count);
             }
         }
 

@@ -3,6 +3,6 @@
     public interface SNFix
     {
         string GetTaskName();
-        void Run(ProgressBarLogger logger, string assetsPath);
+        void Run();
     }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using PassivePicasso.GameImporter;
 using PassivePicasso.GameImporter.SN_Fixes;
 using Unity.SharpZipLib.Utils;
 using UnityEngine;
@@ -18,34 +17,34 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
             return "Fixing Shaders";
         }
 
-        public void Run(ProgressBarLogger logger, string assetPath)
+        public void Run()
         {
-            logger.UpdateTask("InternalDeferredshadingcustomShaderFix");
-            ApplyInternalDeferredshadingcustomShaderFix(assetPath);
-            logger.UpdateTask("MarmosetUBERFix");
-            ApplyMarmosetUBERFix(assetPath);
-            logger.UpdateTask("UWEParticlesUBERFix");
-            ApplyUWEParticlesUBERFix(assetPath);
-            logger.UpdateTask("OverrideStandardShader");
-            OverrideStandardShader(assetPath, logger);
+            SNFixesUtility.Logger.UpdateTask("InternalDeferredshadingcustomShaderFix");
+            ApplyInternalDeferredshadingcustomShaderFix();
+            SNFixesUtility.Logger.UpdateTask("MarmosetUBERFix");
+            ApplyMarmosetUBERFix();
+            SNFixesUtility.Logger.UpdateTask("UWEParticlesUBERFix");
+            ApplyUWEParticlesUBERFix();
+            SNFixesUtility.Logger.UpdateTask("OverrideStandardShader");
+            OverrideStandardShader();
         }
 
-        private static void ApplyInternalDeferredshadingcustomShaderFix(string assetPath)
+        public static void ApplyInternalDeferredshadingcustomShaderFix()
         {
-            string path = assetPath + @"\Resources\internal-deferredshadingcustom.shader";
+            string path = SNFixesUtility.AssetPath + @"\Resources\internal-deferredshadingcustom.shader";
 
             List<string> lines = File.ReadAllLines(path).ToList();
 
             lines.RemoveAt(7);
-            lines.Add("	Fallback \"Hidden/Internal-DeferredShading\""); 
+            lines.Add("	Fallback \"Hidden/Internal-DeferredShading\"");
             lines.Add("}");
 
             File.WriteAllLines(path, lines);
         }
 
-        public static void ApplyUWEParticlesUBERFix(string assetPath)
+        public static void ApplyUWEParticlesUBERFix()
         {
-            string path = assetPath + @"\Shader\UWEParticlesUBER.shader";
+            string path = SNFixesUtility.AssetPath + @"\Shader\UWEParticlesUBER.shader";
 
             List<string> lines = File.ReadAllLines(path).ToList();
 
@@ -54,36 +53,17 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
             File.WriteAllLines(path, lines);
         }
 
-        private static void ApplyMarmosetUBERFix(string assetPath)
+        public static void ApplyMarmosetUBERFix()
         {
-            string path = assetPath + @"\Shader\MarmosetUBER.shader";
+            string path = SNFixesUtility.AssetPath + @"\Shader\MarmosetUBER.shader";
 
             string text = File.ReadAllText(path);
             text = text.Replace("VertexLit", "Legacy Shaders/VertexLit");
             File.WriteAllText(path, text);
         }
 
-        private static void OverrideStandardShader(string assetPath, ProgressBarLogger logger)
+        public static void OverrideStandardShader()
         {
-            //const string URL_PREFIX = "https://raw.githubusercontent.com/TwoTailsGames/Unity-Built-in-Shaders/master/DefaultResourcesExtra/";
-            //string[,] shaderByUrl = new string[,]
-            //{
-            //    { "Standard", "Standard" },
-            //    { "Normal-Bumped", "Legacy ShadersBumped Diffuse" },
-            //    { "Normal-BumpSpec", "Legacy ShadersBumped Specular" },
-            //    { "Particle Add", "Legacy ShadersParticlesAdditive" },
-            //    { "Particle Premultiply Blend", "Legacy ShadersParticlesAlpha Blended Premultiply" },
-            //    { "Particle AddMultiply", "Legacy ShadersParticles~Additive-Multiply" },
-            //    { "Reflect-Diffuse", "Legacy ShadersReflectiveDiffuse" },
-            //    { "Reflect-VertexLit", "Legacy ShadersReflectiveVertexLit" },
-            //    { "Illumin-Diffuse", "Legacy ShadersSelf-IlluminDiffuse" },
-            //    { "Illumin-VertexLit", "Legacy ShadersSelf-IlluminVertexLit" },
-            //    { "", "Legacy ShadersSpecular" }, //Missing
-            //    { "AlphaTest-VertexLit", "Legacy ShadersTransparentCutoutVertexLit" },
-            //    { "Alpha-Diffuse", "Legacy ShadersTransparentDiffuse" },
-            //    { "Alpha-VertexLit", "Legacy ShadersTransparentVertexLit" },
-            //};
-
             string downloadPath = Path.Combine(Environment.CurrentDirectory, "DownloadedBuiltinShaders");
             string extractPath = Path.Combine(downloadPath, "builtInShader-unpacked");
             string downloadFile = Path.Combine(downloadPath, "builtInShader.zip");
@@ -94,19 +74,19 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
             }
             Directory.CreateDirectory(downloadPath);
 
-            DownloadBuiltInShader(logger, downloadFile);
+            DownloadBuiltInShader(downloadFile);
 
             ZipUtility.UncompressFromZip(downloadFile, null, extractPath);
 
             Dictionary<string, string> builtInShaderByPath = new Dictionary<string, string>();
             Dictionary<string, string> snShaderByPath = new Dictionary<string, string>();
 
-            RegisterShader(logger, builtInShaderByPath, extractPath);
-            RegisterShader(logger, snShaderByPath, assetPath);
+            RegisterShader(builtInShaderByPath, extractPath);
+            RegisterShader(snShaderByPath, SNFixesUtility.AssetPath);
 
             for (int i = 0; i < snShaderByPath.Count; i++)
             {
-                logger.Log(uTinyRipper.LogType.Info, LogCategory.General, "Fixing Shader", (float)i / snShaderByPath.Count);
+                SNFixesUtility.Logger.Log(uTinyRipper.LogType.Info, LogCategory.General, "Fixing Shader", (float)i / snShaderByPath.Count);
 
                 KeyValuePair<string, string> keyValuePair = snShaderByPath.ElementAt(i);
 
@@ -120,14 +100,14 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
             Directory.Delete(downloadPath, true);
         }
 
-        private static void DownloadBuiltInShader(ProgressBarLogger logger, string filePath)
+        private static void DownloadBuiltInShader(string filePath)
         {
             UnityWebRequest www = UnityWebRequest.Get("https://download.unity3d.com/download_unity/8e603399ca02/builtin_shaders-2019.2.17f1.zip");
             www.SendWebRequest();
 
             while (!www.isDone)
             {
-                logger.Log(uTinyRipper.LogType.Info, LogCategory.General, "Downloading Built-In-Shader", www.downloadProgress);
+                SNFixesUtility.Logger.Log(uTinyRipper.LogType.Info, LogCategory.General, "Downloading Built-In-Shader", www.downloadProgress);
 
                 if (www.isNetworkError || www.isHttpError)
                 {
@@ -146,19 +126,23 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
         }
 
         private static string[] linesCache;
-        private static void RegisterShader(ProgressBarLogger logger, Dictionary<string, string> dictionary, string path)
+        private static void RegisterShader(Dictionary<string, string> dictionary, string path)
         {
             string[] builtInFiles = Directory.GetFiles(path, "*.shader", SearchOption.AllDirectories);
             for (int index = 0; index < builtInFiles.Length; index++)
             {
-                logger.Log(uTinyRipper.LogType.Info, LogCategory.General, "Registering Shader", (float)index / builtInFiles.Length);
+                SNFixesUtility.Logger.Log(uTinyRipper.LogType.Info, LogCategory.General, "Registering Shader", (float)index / builtInFiles.Length);
                 linesCache = File.ReadAllLines(builtInFiles[index]);
 
                 foreach (string line in linesCache)
                 {
                     if (line.TrimStart().StartsWith("Shader \""))
                     {
-                        dictionary.Add(line.Split('\"')[1], builtInFiles[index]);
+                        string shaderName = line.Split('\"')[1];
+                        if (!dictionary.ContainsKey(shaderName))
+                        {
+                            dictionary.Add(shaderName, builtInFiles[index]);
+                        }
                     }
                 }
             }

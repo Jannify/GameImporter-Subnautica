@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using PassivePicasso.GameImporter;
 using PassivePicasso.GameImporter.SN_Fixes;
 using uTinyRipper;
 
@@ -14,13 +13,15 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
             return "Cleaning Shaders";
         }
 
-        public void Run(ProgressBarLogger logger, string assetPath)
+        public void Run() => CleanShaderFix();
+
+        public static void CleanShaderFix()
         {
-            string[] files = Directory.GetFiles(assetPath, "*.shader", SearchOption.AllDirectories);
+            string[] files = Directory.GetFiles(SNFixesUtility.AssetPath, "*.shader", SearchOption.AllDirectories);
             for (int index = 0; index < files.Length; index++)
             {
                 string file = files[index];
-                logger.Log(LogType.Info, LogCategory.General, $"Cleaning {file.Split('\\').Last()}", (float)index / files.Length);
+                SNFixesUtility.Logger.Log(LogType.Info, LogCategory.General, $"Cleaning {file.Split('\\').Last()}", (float)index / files.Length);
 
                 string text = File.ReadAllText(file);
                 if (text.Contains("SubShader") && text.Contains("Fallback \""))

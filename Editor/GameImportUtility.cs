@@ -147,7 +147,7 @@ namespace PassivePicasso.GameImporter
             ThunderKitSettings tkSettings = GetOrCreateSettings<ThunderKitSettings>();
             GameImportUtility importUtility = GetOrCreateSettings<GameImportUtility>();
             ProgressBarLogger progressBarLogger = new ProgressBarLogger();
-            ripper.Load(tkSettings.GamePath, importUtility.ClassIDTypes, Platform.StandaloneWin64Player, TransferInstructionFlags.AllowTextSerialization, progressBarLogger);
+            //ripper.Load(tkSettings.GamePath, importUtility.ClassIDTypes, Platform.StandaloneWin64Player, TransferInstructionFlags.AllowTextSerialization, progressBarLogger);
 
             //Moving Assets to Subnautica package
             string destPath = Path.Combine(Environment.CurrentDirectory, "Packages", "Subnautica", "Assets");
@@ -155,26 +155,28 @@ namespace PassivePicasso.GameImporter
 
             foreach (string file in Directory.GetFiles(Application.dataPath))
             {
-                if (file.EndsWith("Nitrox.meta") || file.EndsWith("ThunderKitSettings.meta") ||
-                    file.EndsWith("csc.rsp") || file.EndsWith("csc.rsp.meta"))
+                string filename = file.Split('\\').Last();
+                if (filename.Equals("Nitrox.meta") || filename.Equals("ThunderKitSettings.meta") || filename.Equals("StreamingAssets.meta") ||
+                    filename.Equals("csc.rsp") || filename.Equals("csc.rsp.meta"))
                 {
                     continue;
                 }
 
-                File.Move(file, destPath);
+                File.Move(file, Path.Combine(destPath, filename));
             }
 
             string[] directories = Directory.GetDirectories(Application.dataPath);
             for (int index = 0; index < directories.Length; index++)
             {
                 string directory = directories[index];
-                if (directory.EndsWith("Nitrox") || directory.EndsWith("ThunderKitSettings"))
+                string dirName = directory.Split('\\').Last();
+                if (dirName.Equals("Nitrox") || dirName.Equals("ThunderKitSettings") || dirName.Equals("StreamingAssets"))
                 {
                     continue;
                 }
 
-                progressBarLogger.Log(uTinyRipper.LogType.Info, LogCategory.General, "Moving Assets to Package", (float) index / directories.Length);
-                Directory.Move(directory, destPath);
+                progressBarLogger.Log(uTinyRipper.LogType.Info, LogCategory.General, "Moving Assets to Package", (float)index / directories.Length);
+                Directory.Move(directory, Path.Combine(destPath, dirName));
             }
 
             AssetDatabase.Refresh();
