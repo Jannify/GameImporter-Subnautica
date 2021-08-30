@@ -6,13 +6,10 @@ using uTinyRipper;
 
 namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
 {
-    public class CleanShader : SNFix
+    public class CleanShader : ISNFix
     {
-        public string GetTaskName()
-        {
-            return "Cleaning Shaders";
-        }
-
+        public string GetTaskName() => TASK_NAME;
+        public const string TASK_NAME ="Cleaning Shaders";
         public void Run() => CleanShaderFix();
 
         public static void CleanShaderFix()
@@ -21,7 +18,7 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
             for (int index = 0; index < files.Length; index++)
             {
                 string file = files[index];
-                SNFixesUtility.Logger.Log(LogType.Info, LogCategory.General, $"Cleaning {file.Split('\\').Last()}", (float)index / files.Length);
+                SNFixesUtility.ProgressBar.Update($"Cleaning {Path.GetFileName(file)}", null, (float)index / files.Length);
 
                 string text = File.ReadAllText(file);
                 if (text.Contains("SubShader") && text.Contains("Fallback \""))

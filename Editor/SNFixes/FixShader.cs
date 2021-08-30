@@ -6,26 +6,27 @@ using PassivePicasso.GameImporter.SN_Fixes;
 using Unity.SharpZipLib.Utils;
 using UnityEngine;
 using UnityEngine.Networking;
-using uTinyRipper;
 
 namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
 {
-    public class FixShader : SNFix
+    public class FixShader : ISNFix
     {
-        public string GetTaskName()
-        {
-            return "Fixing Shaders";
-        }
+        public string GetTaskName() => TASK_NAME;
+        public const string TASK_NAME = "Fixing Shaders";
 
         public void Run()
         {
-            SNFixesUtility.Logger.UpdateTask("InternalDeferredshadingcustomShaderFix");
+            SNFixesUtility.ProgressBar.Update("", "InternalDeferredshadingcustomShaderFix");
             ApplyInternalDeferredshadingcustomShaderFix();
-            SNFixesUtility.Logger.UpdateTask("MarmosetUBERFix");
+            SNFixesUtility.ProgressBar.Update("", "MarmosetUBERFix");
             ApplyMarmosetUBERFix();
-            SNFixesUtility.Logger.UpdateTask("UWEParticlesUBERFix");
+            SNFixesUtility.ProgressBar.Update("", "UWEParticlesUBERFix");
             ApplyUWEParticlesUBERFix();
-            SNFixesUtility.Logger.UpdateTask("OverrideStandardShader");
+            SNFixesUtility.ProgressBar.Update("", "DefaultHolographicFix");
+            ApplyDefaultHolographicShaderFix();
+            SNFixesUtility.ProgressBar.Update("", "GUITextFix");
+            ApplyGUITextShaderFix();
+            SNFixesUtility.ProgressBar.Update("", "OverrideStandardShader");
             OverrideStandardShader();
         }
 
@@ -38,6 +39,17 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
             lines.RemoveAt(7);
             lines.Add("	Fallback \"Hidden/Internal-DeferredShading\"");
             lines.Add("}");
+
+            File.WriteAllLines(path, lines);
+        }
+
+        public static void ApplyDefaultHolographicShaderFix()
+        {
+            string path = SNFixesUtility.AssetPath + @"\Resources\shaders\holographic.shader";
+
+            string[] lines = File.ReadAllLines(path);
+
+            lines[12] = "		_GlitchHeight (\"Height\", Range(0, 0.2)) = 0.001";
 
             File.WriteAllLines(path, lines);
         }
@@ -62,6 +74,14 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
             File.WriteAllText(path, text);
         }
 
+        public static void ApplyGUITextShaderFix()
+        {
+            string path = SNFixesUtility.AssetPath + @"\Shader\GUIText Shader.shader";
+
+            File.Delete(path);
+            File.Delete(path + ".meta");
+        }
+
         public static void OverrideStandardShader()
         {
             string downloadPath = Path.Combine(Environment.CurrentDirectory, "DownloadedBuiltinShaders");
@@ -72,6 +92,7 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
             {
                 Directory.Delete(downloadPath, true);
             }
+
             Directory.CreateDirectory(downloadPath);
 
             DownloadBuiltInShader(downloadFile);
@@ -86,9 +107,9 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
 
             for (int i = 0; i < snShaderByPath.Count; i++)
             {
-                SNFixesUtility.Logger.Log(uTinyRipper.LogType.Info, LogCategory.General, "Fixing Shader", (float)i / snShaderByPath.Count);
-
                 KeyValuePair<string, string> keyValuePair = snShaderByPath.ElementAt(i);
+
+                SNFixesUtility.ProgressBar.Update($"Fixing Shader: {Path.GetFileName(keyValuePair.Value)}", null, (float)i / snShaderByPath.Count);
 
                 if (builtInShaderByPath.ContainsKey(keyValuePair.Key))
                 {
@@ -107,7 +128,7 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
 
             while (!www.isDone)
             {
-                SNFixesUtility.Logger.Log(uTinyRipper.LogType.Info, LogCategory.General, "Downloading Built-In-Shader", www.downloadProgress);
+                SNFixesUtility.ProgressBar.Update("Downloading Built-In-Shader", null, www.downloadProgress);
 
                 if (www.isNetworkError || www.isHttpError)
                 {
@@ -126,12 +147,13 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
         }
 
         private static string[] linesCache;
+
         private static void RegisterShader(Dictionary<string, string> dictionary, string path)
         {
             string[] builtInFiles = Directory.GetFiles(path, "*.shader", SearchOption.AllDirectories);
             for (int index = 0; index < builtInFiles.Length; index++)
             {
-                SNFixesUtility.Logger.Log(uTinyRipper.LogType.Info, LogCategory.General, "Registering Shader", (float)index / builtInFiles.Length);
+                SNFixesUtility.ProgressBar.Update("Registering Shader", null, (float)index / builtInFiles.Length);
                 linesCache = File.ReadAllLines(builtInFiles[index]);
 
                 foreach (string line in linesCache)

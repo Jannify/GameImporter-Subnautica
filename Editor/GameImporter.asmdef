@@ -4,6 +4,7 @@
         "uTinyRipperCore",
         "uTinyThunderRipper",
         "ThunderKit.Core",
+        "ThunderKit.Common",
         "Unity.SharpZipLib.Utils"
     ],
     "includePlatforms": [

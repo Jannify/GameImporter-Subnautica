@@ -8,7 +8,7 @@ using uTinyRipper;
 
 namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
 {
-    public class UnityUIReference : SNFix
+    public class UnityUIReference : ISNFix
     {
         private const string SN_DEFAULT_GUID = "dc443db3e92b4983b9738c1131f555cb";
         private const string UNITY_DEFAULT_FILE_ID = "11500000";
@@ -47,10 +47,8 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
             { "-900027084", "cfabb0440166ab443bba8876756fdfa9" },   // Shadow
         };
 
-        public string GetTaskName()
-        {
-            return "Reassigning missing UnityEngine.UI references";
-        }
+        public string GetTaskName()=> TASK_NAME;
+        public const string TASK_NAME ="Reassigning missing UnityEngine.UI references";
 
         public void Run() => UnityUIReferenceFix();
 
@@ -64,8 +62,8 @@ namespace Packages.ThunderKit.GameImporter.Editor.SNFixes
             for (int index = 0; index < files.Count; index++)
             {
                 string file = files[index];
+                SNFixesUtility.ProgressBar.Update(Path.GetFileName(file), null, (float)index / files.Count);
                 ApplyFile(file);
-                SNFixesUtility.Logger.Log(LogType.Info, LogCategory.General, file.Split('\\').Last(), (float)index / files.Count);
             }
         }
 
